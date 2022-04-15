@@ -65,10 +65,19 @@ If you will be start producer, consumer, kafka broker server on the different de
   <pre> sudo apt-get install -y sox</pre></li>
 </ul>
 
-Kafka producer
+<b>Kafka producer</b>
 
 You can find in kafka-python-camera-stream-producer directory. What necessary:
-1. Make directory for this goal:
-mkdir 
+1. Make directory for this goal and put files for kafka producer:
+```{r klippy, echo=FALSE, include=TRUE}
+sudo mkdir opt/Kafka/kafka_producer && cd opt/Kafka/kafka_producer
+```
+
+
+
+
+
+
+
 
 In future I add files for organization work in kubernetes
