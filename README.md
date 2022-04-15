@@ -16,16 +16,16 @@ sudo apt-get upgrade -y</pre>
 
 1. Before installing Kafka, you will need to install Java, add this repository
 
-sudo add-apt-repository -y ppa:webupd8team/java
+<pre>sudo add-apt-repository -y ppa:webupd8team/java</pre>
 
 2. Next, update the metadata of the new repository and install JDK 8
 
-sudo apt-get update
-sudo apt-get install oracle-java8-installer -y
+<pre>sudo apt-get update
+sudo apt-get install oracle-java8-installer -y</pre>
 
 <b>Install ZooKeeper</b>
 
-sudo apt-get install zookeeperd
+<pre>sudo apt-get install zookeeperd</pre>
 
 <b>Install and start kafka broker</b>
 
