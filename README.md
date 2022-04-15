@@ -84,7 +84,7 @@ You can find in kafka-python-camera-stream-producer directory. What necessary:
 python3 kafka_producer.py
 ```
 3. In this file, depends on what external device (usb camera/IP camera) you will be use, change last line on code
-<pre>emit_video(0) for usb camera (or other sign depends on your device number; can check with command <b>ls /dev<b> your devices)</pre>
+<pre>emit_video(0) for usb camera (or other sign depends on your device number; can check with command <b>ls /dev</b> your devices)</pre>
 
 
 
