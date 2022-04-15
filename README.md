@@ -65,16 +65,26 @@ If you will be start producer, consumer, kafka broker server on the different de
   <pre> sudo apt-get install -y sox</pre></li>
 </ul>
 
+<b>Downland project</b>
+
+For work with project firstly needed downland into your local machine
+1. Go to directory where you wanna laid project
+<pre>cd your/directory</pre>
+2. Run the next command
+```{r klippy, echo=FALSE, include=TRUE}
+sudo git clone https://github.com/Govraskirill/Kafka-with-ai-face-recognise ./
+```
+
 <b>Kafka producer</b>
 
 You can find in kafka-python-camera-stream-producer directory. What necessary:
-1. Make directory for this goal and put files for kafka producer:
+1. Got to directory with kafka-python-camera-stream-producer on your local machine/server
+2. Run the next command:
 ```{r klippy, echo=FALSE, include=TRUE}
-sudo mkdir opt/Kafka/kafka_producer && cd opt/Kafka/kafka_producer
+python3 kafka_producer.py
 ```
-
-
-
+3. In this file, depends on what external device (usb camera/IP camera) you will be use, change last line on code
+<pre>emit_video(0) for usb camera (or other sign depends on your device number; can check with command <b>ls /dev<b> your devices)</pre>
 
 
 
