@@ -13,11 +13,12 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 
 <b>Installing Java</b>
-Before installing Kafka, you will need to install Java, add this repository
+
+1. Before installing Kafka, you will need to install Java, add this repository
 
 sudo add-apt-repository -y ppa:webupd8team/java
 
-Next, update the metadata of the new repository and install JDK 8
+2. Next, update the metadata of the new repository and install JDK 8
 
 sudo apt-get update
 sudo apt-get install oracle-java8-installer -y
@@ -26,13 +27,16 @@ sudo apt-get install oracle-java8-installer -y
 
 sudo apt-get install zookeeperd
 
+<b>Install and start kafka broker
+
 For work with kafka you should install kafka broker. You can find instruction on official site: https://kafka.apache.org/quickstart
 
 Tips for work with kafka broker:
+
 1. If you will be start producer, consumer, kafka broker server on the different devices you should in config/server.properties (in kafka broker files) manage: 
-  1.1 Broker address: advertised.listeners=PLAINTEXT://192.168.1.12:9092 (instead 192.168.1.12:9092 you should write you ip_address:port)
-  1.2 Producer and consumer addresses. For example if you wanna working in local network you should assign this one in line: listeners=PLAINTEXT://0.0.0.0:9092 (0.0.0.0: port)
-  1.3 If need install libraries for readme file in kafka broker directory. In some case maybe need install: sudo apt-get install -y sox
+a. Broker address: advertised.listeners=PLAINTEXT://192.168.1.12:9092 (instead 192.168.1.12:9092 you should write you ip_address:port)
+b. Producer and consumer addresses. For example if you wanna working in local network you should assign this one in line: listeners=PLAINTEXT://0.0.0.0:9092 (0.0.0.0: port)
+c. If need install libraries for readme file in kafka broker directory. In some case maybe need install: sudo apt-get install -y sox
 
 Kafka producer
 
