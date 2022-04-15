@@ -188,10 +188,11 @@ kubectl port-forward name_of_consumer_pod 5000:5000
 KUBE_EDITOR="nano" kubectl edit deployment name_deployment 
 ```
 In deployment find function spec and add line <b>hostNetwork: true</b>:
+<pre>
 spec:
       hostNetwork: true
       containers:
       - image: kirillgovras/kafka_producer:2.0
         imagePullPolicy: IfNotPresent
-
+</pre>
 
