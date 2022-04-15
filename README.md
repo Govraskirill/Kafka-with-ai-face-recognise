@@ -95,6 +95,7 @@ You can find in kafka-python-camera-stream-consumer directory. What necessary:
 ```{r klippy, echo=FALSE, include=TRUE}
 python3 consumer.py
 ```
+3. Go to link 127.0.0.1:5000 on your browser
 
 <b>Kafka parser</b>
 
@@ -156,4 +157,41 @@ docker stop parser
 docker stop kafkatomongo
 </pre>
 
-In future I add files for organization work in kubernetes
+<b><Work in Kubernetes/b>
+
+For orchestry this docker containers will be use kubernetes
+1. Firstly need install kubectl and minikube(local Kubernetes). Use next links:
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+https://minikube.sigs.k8s.io/docs/start/ 
+2. If will be problem with start on ubuntu go to link:
+https://stackoverflow.com/questions/65397050/minikube-does-not-start-on-ubuntu-20-04-lts-exiting-due-to-guest-provision
+
+Start work with kubernetes:
+1. Run command:
+```{r klippy, echo=FALSE, include=TRUE}
+minikube start
+```
+2. Build deployments (pods will be create automatically) so that work with containers from previous steps. Run this command by separately:
+<pre>
+kubectl create deployment producer --image=kirillgovras/kafka_producer:2.0
+kubectl create deployment consumer --image=kirillgovras/kafka_consumer:2.0
+kubectl create deployment parser --image=kirillgovras/kafka_parser:2.0
+kubectl create deployment kafkatomongo --image=kirillgovras/kafka_mongo:2.0
+</pre>
+3. For open our consumer on browser we need forward a port. Run first command so that define pod with consumer's container and run the second command so that forward a port:
+```{r klippy, echo=FALSE, include=TRUE}
+kubectl get pods
+kubectl port-forward name_of_consumer_pod 5000:5000
+```
+4. In some cases when we work in local network need to change .yaml files for our pods with containers. Edit deployment with the next command:
+```{r klippy, echo=FALSE, include=TRUE}
+KUBE_EDITOR="nano" kubectl edit deployment name_deployment 
+```
+In deployment find function spec and add line <b>hostNetwork: true</b>:
+spec:
+      hostNetwork: true
+      containers:
+      - image: kirillgovras/kafka_producer:2.0
+        imagePullPolicy: IfNotPresent
+
+
