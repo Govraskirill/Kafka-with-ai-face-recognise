@@ -115,10 +115,18 @@ https://syntaxfix.com/question/448/mongonetworkerror-failed-to-connect-to-server
 </ul>
 
 After install necessary dependencies:
-1. Go to directory Kafka_Mongo
-2. Run the next code:
+0. For step 1 and 2 use mongoDB compass
+1. Create <b>consumerDB</b> database on MongoDB
+2. Create collection <b>consumerCollection</b> on <b>consumerDB</b> database
+3. Go to directory Kafka_Mongo
+4. Run the next code:
 ```{r klippy, echo=FALSE, include=TRUE}
 python3 KafkaIntegrationWithMongoDB.py
 ```
+<b>Notice</b>
+<ul>
+  <li>In line  client = MongoClient('192.168.1.124',27017). Change ip address. Use ip address of your machine, where ran MongoDB. Port should be as default = 27017</li>
+  <li>In line consumer = KafkaConsumer change parameter bootstrap_servers=['192.168.1.12:9092']. Assign ip address of your mashine/server where ran kafka broker. If start code on one mashine write localhost:9092</li>
+</ul>
 
 In future I add files for organization work in kubernetes
