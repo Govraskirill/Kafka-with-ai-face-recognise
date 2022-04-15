@@ -8,10 +8,10 @@ In this repository you can find four directories at the moment:
 4. connector for transfer data from Kafka broker topic to MongoDB collection
 
 <b>Let's making your Ubuntu up to date</b>
-```{r klippy, echo=FALSE, include=TRUE}
+<pre>
 sudo apt-get update -y
 sudo apt-get upgrade -y
-```
+</pre>
 
 
 <b>Installing Java</b>
@@ -21,10 +21,10 @@ sudo apt-get upgrade -y
 sudo add-apt-repository -y ppa:webupd8team/java
 ```
 2. Next, update the metadata of the new repository and install JDK 8
-```{r klippy, echo=FALSE, include=TRUE}
+<pre>
 sudo apt-get update
 sudo apt-get install oracle-java8-installer -y
-```
+</pre>
 <b>Install ZooKeeper</b>
 ```{r klippy, echo=FALSE, include=TRUE}
 sudo apt-get install zookeeperd
@@ -35,10 +35,10 @@ For work with kafka you should install kafka broker
 
 1. You can find installation file on official site: https://kafka.apache.org/quickstart
 2. Make direrctory for Kafka installation:
-```{r klippy, echo=FALSE, include=TRUE}
+<pre>
 sudo mkdir /opt/Kafka
 cd /opt/Kafka
-```
+</pre>
 3. Extract the downlanded archive in /opt/Kafka
 ```{r klippy, echo=FALSE, include=TRUE}
 sudo tar -xvf kafka_2.13-3.1.0.tgz -C /opt/Kafka/
@@ -48,10 +48,10 @@ sudo tar -xvf kafka_2.13-3.1.0.tgz -C /opt/Kafka/
 sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-server-start.sh /opt/Kafka/kafka_2.13-3.1.0/config/server.properties
 ```
 5. Create topics for storage data by use the next command:
-```{r klippy, echo=FALSE, include=TRUE}
+<pre>
 sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-topics.sh --create --topic mongotest7 --bootstrap-server localhost:9092
 sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-topics.sh --create --topic mongotest8 --bootstrap-server localhost:9092
-```
+</pre>
 
 <b>Tips for work with kafka broker</b>
 
@@ -90,7 +90,7 @@ python3 producer.py
 <b>Kafka consumer</b>
 
 You can find in kafka-python-camera-stream-consumer directory. What necessary:
-1. Got to directory with kafka-python-camera-stream-consumer on your local machine/server
+1. Go to directory with kafka-python-camera-stream-consumer on your local machine/server
 2. Run the next command:
 ```{r klippy, echo=FALSE, include=TRUE}
 python3 consumer.py
@@ -179,10 +179,10 @@ kubectl create deployment parser --image=kirillgovras/kafka_parser:2.0
 kubectl create deployment kafkatomongo --image=kirillgovras/kafka_mongo:2.0
 </pre>
 3. For open our consumer on browser we need forward a port. Run first command so that define pod with consumer's container and run the second command so that forward a port:
-```{r klippy, echo=FALSE, include=TRUE}
+<pre>
 kubectl get pods
 kubectl port-forward name_of_consumer_pod 5000:5000
-```
+</pre>
 4. In some cases when we work in local network need to change .yaml files for our pods with containers. Edit deployment with the next command:
 ```{r klippy, echo=FALSE, include=TRUE}
 KUBE_EDITOR="nano" kubectl edit deployment name_deployment 
