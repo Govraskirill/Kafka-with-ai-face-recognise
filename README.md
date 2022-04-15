@@ -113,4 +113,12 @@ https://www.mongodb.com/docs/compass/current/install/</li>
   <li>In case some problem with connect to MongoDB directly from another device:
 https://syntaxfix.com/question/448/mongonetworkerror-failed-to-connect-to-server-localhost-27017-on-first-connect-mongonetworkerror-connect-econnrefused-127-0-0-1-27017 
 </ul>
+
+After install necessary dependencies:
+1. Go to directory Kafka_Mongo
+2. Run the next code:
+```{r klippy, echo=FALSE, include=TRUE}
+python3 KafkaIntegrationWithMongoDB.py
+```
+
 In future I add files for organization work in kubernetes
