@@ -55,10 +55,15 @@ sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-topics.sh --create --topic topicname 
 <b>Tips for work with kafka broker</b>
 
 If you will be start producer, consumer, kafka broker server on the different devices you should in config/server.properties (in kafka broker files) manage: 
-
-a. Broker address: advertised.listeners=PLAINTEXT://192.168.1.12:9092 (instead 192.168.1.12:9092 you should write you ip_address:port)</br>
-b. Producer and consumer addresses. For example if you wanna working in local network you should assign this one in line: listeners=PLAINTEXT://0.0.0.0:9092 (0.0.0.0: port)</br>
-c. If need install libraries for readme file in kafka broker directory. In some case maybe need install: sudo apt-get install -y sox
+<ul>
+  <li> Broker address: 
+  <pre>advertised.listeners=PLAINTEXT://192.168.1.12:9092</pre> 
+  <b>(instead 192.168.1.12:9092 you should write you ip_address:port, where ip_address this is appropriate computer ip_address you kafka broker are running)</b></li>
+  <li> Producer and consumer addresses. For example if you wanna working in local network you should assign this one in line:          <pre>listeners=PLAINTEXT://0.0.0.0:9092</pre></li>
+  <li> If need install libraries for readme file in kafka broker directory.</li>
+  <li>In some case maybe need install:
+  <pre> sudo apt-get install -y sox</pre></li>
+</ul>
 
 Kafka producer
 
