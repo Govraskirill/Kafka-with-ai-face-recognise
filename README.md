@@ -8,38 +8,45 @@ In this repository you can find four directories at the moment:
 4. connector for transfer data from Kafka broker topic to MongoDB collection
 
 <b>Let's making your Ubuntu up to date</b>
+```{r klippy, echo=FALSE, include=TRUE}
+sudo apt-get update -y
+sudo apt-get upgrade -y
+```
 
-<pre>sudo apt-get update -y
-sudo apt-get upgrade -y</pre>
 
 <b>Installing Java</b>
 
 1. Before installing Kafka, you will need to install Java, add this repository
-
-<pre>sudo add-apt-repository -y ppa:webupd8team/java</pre>
-
+```{r klippy, echo=FALSE, include=TRUE}
+sudo add-apt-repository -y ppa:webupd8team/java
+```
 2. Next, update the metadata of the new repository and install JDK 8
-
-<pre>sudo apt-get update
-sudo apt-get install oracle-java8-installer -y</pre>
-
+```{r klippy, echo=FALSE, include=TRUE}
+sudo apt-get update
+sudo apt-get install oracle-java8-installer -y
+```
 <b>Install ZooKeeper</b>
-
-<pre>sudo apt-get install zookeeperd</pre>
-
+```{r klippy, echo=FALSE, include=TRUE}
+sudo apt-get install zookeeperd
+```
 <b>Install and start kafka broker</b>
 
 For work with kafka you should install kafka broker
 
 1. You can find installation file on official site: https://kafka.apache.org/quickstart
 2. Make direrctory for Kafka installation:
-<pre>sudo mkdir /opt/Kafka
-cd /opt/Kafka</pre>
+```{r klippy, echo=FALSE, include=TRUE}
+sudo mkdir /opt/Kafka
+cd /opt/Kafka
+```
 3. Extract the downlanded archive in /opt/Kafka
-<pre>sudo tar -xvf kafka_2.13-3.1.0.tgz -C /opt/Kafka/</pre>
+```{r klippy, echo=FALSE, include=TRUE}
+sudo tar -xvf kafka_2.13-3.1.0.tgz -C /opt/Kafka/
+```
 4. Start kafka broker 
-<pre>sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-server-start.sh /opt/Kafka/kafka_2.13-3.1.0/config/server.properties</pre>
-
+```{r klippy, echo=FALSE, include=TRUE}
+sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-server-start.sh /opt/Kafka/kafka_2.13-3.1.0/config/server.properties
+```
 <b>Tips for work with kafka broker</b>
 
 If you will be start producer, consumer, kafka broker server on the different devices you should in config/server.properties (in kafka broker files) manage: 
