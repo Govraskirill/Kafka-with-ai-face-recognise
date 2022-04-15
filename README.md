@@ -81,13 +81,28 @@ You can find in kafka-python-camera-stream-producer directory. What necessary:
 1. Got to directory with kafka-python-camera-stream-producer on your local machine/server
 2. Run the next command:
 ```{r klippy, echo=FALSE, include=TRUE}
-python3 kafka_producer.py
+python3 producer.py
 ```
 3. In this file, depends on what external device (usb camera/IP camera) you will be use, change last line on code
 <pre>emit_video(0) for usb camera (or other sign depends on your device number; can check with command <b>ls /dev</b> your devices)</pre>
 
+<b>Kafka consumer</b>
 
+You can find in kafka-python-camera-stream-consumer directory. What necessary:
+1. Got to directory with kafka-python-camera-stream-consumer on your local machine/server
+2. Run the next command:
+```{r klippy, echo=FALSE, include=TRUE}
+python3 consumer.py
+```
 
+<b>Kafka parser</b>
+
+You can find in kafka-python-camera-stream-parser directory. What necessary:
+1. Got to directory with kafka-python-camera-stream-parser on your local machine/server
+2. Run the next command:
+```{r klippy, echo=FALSE, include=TRUE}
+python3 parser.py
+```
 
 
 In future I add files for organization work in kubernetes
