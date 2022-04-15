@@ -49,7 +49,7 @@ sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-server-start.sh /opt/Kafka/kafka_2.13
 ```
 5. If you need to create some topic for storage data you can use next command
 ```{r klippy, echo=FALSE, include=TRUE}
-sudo /opt/Kafka/kafka_2.11-2.1.1/bin/kafka-topics.sh --create --topic topicname --bootstrap-server localhost:9092
+sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-topics.sh --create --topic topicname --bootstrap-server localhost:9092
 ```
 
 <b>Tips for work with kafka broker</b>
