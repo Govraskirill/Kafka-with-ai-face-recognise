@@ -9,8 +9,8 @@ In this repository you can find four directories at the moment:
 
 <b>Let's making your Ubuntu up to date</b>
 
-sudo apt-get update -y
-sudo apt-get upgrade -y
+<pre>sudo apt-get update -y
+sudo apt-get upgrade -y</pre>
 
 <b>Installing Java</b>
 
