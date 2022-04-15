@@ -7,9 +7,7 @@ In this repository you can find four directories at the moment:
 3. kafka parser, which allow work with ai face recognice
 4. connector for transfer data from Kafka broker topic to MongoDB collection
 
-For work with kafka you should install kafka broker. You can find instruction on official site: https://kafka.apache.org/quickstart
-
-Let's making your Ubuntu up to date
+<b>Let's making your Ubuntu up to date</b>
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -24,9 +22,11 @@ Next, update the metadata of the new repository and install JDK 8
 sudo apt-get update
 sudo apt-get install oracle-java8-installer -y
 
-Install ZooKeeper
+<b>Install ZooKeeper</b>
 
 sudo apt-get install zookeeperd
+
+For work with kafka you should install kafka broker. You can find instruction on official site: https://kafka.apache.org/quickstart
 
 Tips for work with kafka broker:
 1. If you will be start producer, consumer, kafka broker server on the different devices you should in config/server.properties (in kafka broker files) manage: 
