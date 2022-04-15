@@ -35,7 +35,7 @@ For work with kafka you should install kafka broker. You can find instruction on
 
 If you will be start producer, consumer, kafka broker server on the different devices you should in config/server.properties (in kafka broker files) manage: 
 
-a. Broker address: advertised.listeners=PLAINTEXT://192.168.1.12:9092 (instead 192.168.1.12:9092 you should write you ip_address:port)
+a. Broker address: advertised.listeners=PLAINTEXT://192.168.1.12:9092 (instead 192.168.1.12:9092 you should write you ip_address:port)</br>
 b. Producer and consumer addresses. For example if you wanna working in local network you should assign this one in line: listeners=PLAINTEXT://0.0.0.0:9092 (0.0.0.0: port)
 c. If need install libraries for readme file in kafka broker directory. In some case maybe need install: sudo apt-get install -y sox
 
