@@ -29,7 +29,12 @@ sudo apt-get install oracle-java8-installer -y</pre>
 
 <b>Install and start kafka broker</b>
 
-For work with kafka you should install kafka broker. You can find instruction on official site: https://kafka.apache.org/quickstart
+For work with kafka you should install kafka broker
+
+1. You can find instruction on official site: https://kafka.apache.org/quickstart
+2. Make direrctory for Kafka installation:
+<pre>sudo mkdir /opt/Kafka
+cd /opt/Kafka</pre>
 
 <b>Tips for work with kafka broker</b>
 
