@@ -129,4 +129,27 @@ python3 KafkaIntegrationWithMongoDB.py
   <li>In line consumer = KafkaConsumer change parameter bootstrap_servers=['192.168.1.12:9092']. Assign ip address of your mashine/server where ran kafka broker. If start code on one machine write localhost:9092</li>
 </ul>
 
+For build dockerfiles for each element of kafka, run the next commands:
+1. Downland from dockerhub images:
+```{r klippy, echo=FALSE, include=TRUE}
+docker pull kirillgovras/kafka_producer:2.0
+docker pull kirillgovras/kafka_consumer:2.0
+docker pull kirillgovras/kafka_parser:2.0
+docker pull kirillgovras/kafka_mongo:2.0
+```
+2. Run docker containers:
+```{r klippy, echo=FALSE, include=TRUE}
+docker run --name producer kirillgovras/kafka_producer:2.0 
+docker run -p 5000 --name consumer --network=host kirillgovras/kafka_consumer:2.0
+docker run --name parser kirillgovras/kafka_parser:2.0
+docker run --name kafkatomongo kirillgovras/kafka_mongo:2.0
+```
+3. For stop containers you can run commands:
+```{r klippy, echo=FALSE, include=TRUE}
+docker stop producer
+docker stop consumer
+docker stop parser
+docker stop kafkatomongo
+```
+
 In future I add files for organization work in kubernetes
