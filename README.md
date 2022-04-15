@@ -157,7 +157,7 @@ docker stop parser
 docker stop kafkatomongo
 </pre>
 
-<b><Work in Kubernetes/b>
+<b>Work in Kubernetes</b>
 
 For orchestry this docker containers will be use kubernetes
 1. Firstly need install kubectl and minikube(local Kubernetes). Use next links:
