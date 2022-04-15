@@ -131,25 +131,29 @@ python3 KafkaIntegrationWithMongoDB.py
 
 For build dockerfiles for each element of kafka, run the next commands (only separately, line by line):
 1. Downland from dockerhub images:
-```{r klippy, echo=FALSE, include=TRUE}
+<pre>
 docker pull kirillgovras/kafka_producer:2.0
 docker pull kirillgovras/kafka_consumer:2.0
 docker pull kirillgovras/kafka_parser:2.0
 docker pull kirillgovras/kafka_mongo:2.0
-```
+</pre>
+1.1. You can build containers appropriate from directories. Only use commands (from necessary directories, all have dockerfiles):
+<pre>
+docker build -t nameofproducerimage .
+</pre>
 2. Run docker containers:
-```{r klippy, echo=FALSE, include=TRUE}
+<pre>
 docker run --name producer kirillgovras/kafka_producer:2.0 
 docker run -p 5000 --name consumer --network=host kirillgovras/kafka_consumer:2.0
 docker run --name parser kirillgovras/kafka_parser:2.0
 docker run --name kafkatomongo kirillgovras/kafka_mongo:2.0
-```
+</pre>
 3. For stop containers you can run commands:
-```{r klippy, echo=FALSE, include=TRUE}
+<pre>
 docker stop producer
 docker stop consumer
 docker stop parser
 docker stop kafkatomongo
-```
+</pre>
 
 In future I add files for organization work in kubernetes
