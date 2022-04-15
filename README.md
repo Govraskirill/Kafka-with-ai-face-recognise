@@ -114,8 +114,7 @@ https://www.mongodb.com/docs/compass/current/install/</li>
 https://syntaxfix.com/question/448/mongonetworkerror-failed-to-connect-to-server-localhost-27017-on-first-connect-mongonetworkerror-connect-econnrefused-127-0-0-1-27017 
 </ul>
 
-After install necessary dependencies:
-0. For step 1 and 2 use mongoDB compass
+After install necessary dependencies (for step 1 and 2 use mongoDB compass):
 1. Create <b>consumerDB</b> database on MongoDB
 2. Create collection <b>consumerCollection</b> on <b>consumerDB</b> database
 3. Go to directory Kafka_Mongo
