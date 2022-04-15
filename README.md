@@ -129,7 +129,7 @@ python3 KafkaIntegrationWithMongoDB.py
   <li>In line consumer = KafkaConsumer change parameter bootstrap_servers=['192.168.1.12:9092']. Assign ip address of your mashine/server where ran kafka broker. If start code on one machine write localhost:9092</li>
 </ul>
 
-For build dockerfiles for each element of kafka, run the next commands:
+For build dockerfiles for each element of kafka, run the next commands (only separately, line by line):
 1. Downland from dockerhub images:
 ```{r klippy, echo=FALSE, include=TRUE}
 docker pull kirillgovras/kafka_producer:2.0
