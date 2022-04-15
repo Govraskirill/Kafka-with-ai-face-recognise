@@ -106,7 +106,7 @@ python3 parser.py
 <b>Work with MongoDB</b>
 
 Use .py code of this project we can copy data from kafka broker topic and transfer to MongoDB
-
-So that start work we need to install MongoDB. All necesary instruction you can find on official site by link: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
-
+<ul>
+  <li>So that start work we need to install MongoDB. All necesary instruction you can find on official site by link: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/</li>
+</ul>
 In future I add files for organization work in kubernetes
