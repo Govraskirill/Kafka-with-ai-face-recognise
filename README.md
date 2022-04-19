@@ -196,3 +196,10 @@ spec:
         imagePullPolicy: IfNotPresent
 </pre>
 
+<b>NOTICE</b>
+In new version of producer and parser were adding:
+1. In producer - ai recognise instead parser (producer_new.py)
+2. In parser - remove ai recognise (parser_new.py)
+
+This action increase speed of transfer data from producer to consumer by kafka broker
+
