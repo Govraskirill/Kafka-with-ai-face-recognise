@@ -42,27 +42,33 @@ fps = FPS().start()
 #put model for ai and put this file on function
 cascPath = "models/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
+face_buffer = None
+counter = 10
 
 # loop over frames from the video file stream
 while True:
-	# grab the frame from the threaded video file stream, resize
-	# it, and convert it to grayscale (while still retaining 3
-	# channels)
-	frame = fvs.read()
-	#frame = imutils.resize(frame, width=450)
-	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+	if counter == 10:
+		# grab the frame from the threaded video file stream, resize
+		# it, and convert it to grayscale (while still retaining 3
+		# channels)
+		frame = fvs.read()
+		#frame = imutils.resize(frame, width=450)
+		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
 
-	faces = faceCascade.detectMultiScale(
-        gray,
-        scaleFactor=1.1,
-        minNeighbors=5,
-        minSize=(30, 30),
-        #flags=cv2.cv.CV_HAAR_SCALE_IMAGE
-        flags=cv2.CASCADE_SCALE_IMAGE
-    )
+		faces = faceCascade.detectMultiScale(
+			gray,
+			scaleFactor=1.1,
+			minNeighbors=5,
+			minSize=(30, 30),
+			#flags=cv2.cv.CV_HAAR_SCALE_IMAGE
+			flags=cv2.CASCADE_SCALE_IMAGE
+		)
+		face_buffer = faces
+		counter = 0
 
-	for (x, y, w, h) in faces:
+	counter += 1
+	for (x, y, w, h) in face_buffer:
 	    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
 	# show the frame and update the FPS counter
