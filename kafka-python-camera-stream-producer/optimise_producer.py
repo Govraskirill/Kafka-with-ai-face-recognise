@@ -1,5 +1,5 @@
 # import the necessary packages
-from imutils.video import FileVideoStream
+from imutils.video import VideoStream
 from imutils.video import FPS
 import numpy as np
 import argparse
@@ -34,7 +34,7 @@ args = vars(ap.parse_args())
 # start the file video stream thread and allow the buffer to
 # start to fill
 print("[INFO] starting video file thread...")
-fvs = FileVideoStream(args["video"]).start()
+fvs = VideoStream(args["video"]).start()
 time.sleep(1.0)
 # start the FPS timer
 fps = FPS().start()
@@ -42,41 +42,33 @@ fps = FPS().start()
 #put model for ai and put this file on function
 cascPath = "models/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
-face_buffer = None
-counter = 10
 
 # loop over frames from the video file stream
 while True:
-	if counter == 10:
-		# grab the frame from the threaded video file stream, resize
-		# it, and convert it to grayscale (while still retaining 3
-		# channels)
-		frame = fvs.read()
-		#frame = imutils.resize(frame, width=450)
-		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+	# grab the frame from the threaded video file stream, resize
+	# it, and convert it to grayscale (while still retaining 3
+	# channels)
+	frame = fvs.read()
+	#frame = imutils.resize(frame, width=640, height=480)
+	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
 
-		faces = faceCascade.detectMultiScale(
-			gray,
-			scaleFactor=1.1,
-			minNeighbors=5,
-			minSize=(30, 30),
-			#flags=cv2.cv.CV_HAAR_SCALE_IMAGE
-			flags=cv2.CASCADE_SCALE_IMAGE
-		)
-		face_buffer = faces
-		counter = 0
+	faces = faceCascade.detectMultiScale(
+		gray,
+		scaleFactor=1.1,
+		minNeighbors=5,
+		minSize=(30, 30),
+		#flags=cv2.cv.CV_HAAR_SCALE_IMAGE
+		flags=cv2.CASCADE_SCALE_IMAGE
+	)
 
-	counter += 1
-	for (x, y, w, h) in face_buffer:
+	for (x, y, w, h) in faces:
 	    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
 	# show the frame and update the FPS counter
 	if args["display"] > 0:
 	    cv2.imshow("Frame", frame)
 	    cv2.waitKey(1)
-
-	fps.update()
 
 	# png might be too large to emit
 	encode_param = [int (cv2.IMWRITE_JPEG_QUALITY), 90]
@@ -91,7 +83,7 @@ while True:
 	#send to kafka topic
 	future = producer.send(topic, byte_encode)
 
-	#fps.update()
+	fps.update()
 
 # stop the timer and display FPS information
 #fps.stop()
@@ -100,5 +92,3 @@ while True:
 # do a bit of cleanup
 cv2.destroyAllWindows()
 fvs.stop()
-
-
