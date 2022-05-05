@@ -30,7 +30,7 @@ timestamp = time_ns()
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-v", "--video", default = "rtsp://admin:admin@192.168.1.6:1935",
+ap.add_argument("-v", "--video", default = "rtsp://192.168.1.6:1935",
 	help="path to input video file")
 ap.add_argument("-d", "--display", type = int, default = "1",
 	help="show video or not: 0 - no, 1 - yes")
