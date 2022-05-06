@@ -1,11 +1,10 @@
 # Kafka-with-ai-face-recognise
-Repository where you can find necessary information for work with kafka producer, consumer, KafkaBrokerTopic to Mongo Connector and Parser which allow work with ai face recognise
+Repository where you can find necessary information for work with kafka producer, consumer, publisher which allow work with ai face recognise
 
 In this repository you can find four directories at the moment: 
 1. kafka producer
 2. kafka consumer
-3. kafka parser, which allow work with ai face recognice
-4. connector for transfer data from Kafka broker topic to MongoDB collection
+3. kafka publisher for transfer data from Kafka broker topic to MongoDB collection
 
 <b>Let's making your Ubuntu up to date</b>
 <pre>
@@ -34,12 +33,12 @@ sudo apt-get install zookeeperd
 For work with kafka you should install kafka broker
 
 1. You can find installation file on official site: https://kafka.apache.org/quickstart
-2. Make direrctory for Kafka installation:
+2. Make directory for Kafka installation:
 <pre>
 sudo mkdir /opt/Kafka
 cd /opt/Kafka
 </pre>
-3. Extract the downlanded archive in /opt/Kafka
+3. Extract the downloaded archive in /opt/Kafka
 ```{r klippy, echo=FALSE, include=TRUE}
 sudo tar -xvf kafka_2.13-3.1.0.tgz -C /opt/Kafka/
 ```
@@ -49,9 +48,11 @@ sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-server-start.sh /opt/Kafka/kafka_2.13
 ```
 5. Create topics for storage data by use the next command:
 <pre>
-sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-topics.sh --create --topic mongotest7 --bootstrap-server localhost:9092
-sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-topics.sh --create --topic mongotest8 --bootstrap-server localhost:9092
+sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-topics.sh --create --topic mongotest12 --bootstrap-server localhost:9092
+sudo /opt/Kafka/kafka_2.13-3.1.0/bin/kafka-topics.sh --create --topic mongotest14 --bootstrap-server localhost:9092
 </pre>
+
+Topic which you will be create depends on which you will be using in producer
 
 <b>Tips for work with kafka broker</b>
 
@@ -66,7 +67,7 @@ If you will be start producer, consumer, kafka broker server on the different de
   <pre> sudo apt-get install -y sox</pre></li>
 </ul>
 
-<b>Downland project</b>
+<b>Download project</b>
 
 For work with project firstly needed downland into your local machine
 1. Go to directory where you wanna laid project
@@ -79,13 +80,15 @@ sudo git clone https://github.com/Govraskirill/Kafka-with-ai-face-recognise ./
 <b>Kafka producer</b>
 
 You can find in kafka-python-camera-stream-producer directory. What necessary:
-1. Got to directory with kafka-python-camera-stream-producer on your local machine/server
+1. Go to directory with kafka-python-camera-stream-producer on your local machine/server
 2. Run the next command:
 ```{r klippy, echo=FALSE, include=TRUE}
 python3 producer.py
 ```
-3. In this file, depends on what external device (usb camera/IP camera) you will be use, change last line on code
-<pre>emit_video(0) for usb camera (or other sign depends on your device number; can check with command <b>ls /dev</b> your devices)</pre>
+3. In this file, depends on what external device (usb camera/IP camera) you will be use, change line on code
+<pre>ap.add_argument("-v", "--video", default = "rtsp://192.168.1.6:1935" (change this link on link with your camera)</pre>
+
+4. By default when start producer.py will be show window with videostream from camera. You can change this one using parameter <b>-d 0 </b>(not display); also can change source: <b>-v your_link</b>
 
 <b>Kafka consumer</b>
 
@@ -97,13 +100,13 @@ python3 consumer.py
 ```
 3. Go to link 127.0.0.1:5000 on your browser
 
-<b>Kafka parser</b>
+<b>Kafka publisher</b>
 
-You can find in kafka-python-camera-stream-parser directory. What necessary:
-1. Got to directory with kafka-python-camera-stream-parser on your local machine/server
+You can find in kafka-python-camera-stream-publisher directory. What necessary:
+1. Go to directory with kafka-python-camera-stream-publisher on your local machine/server
 2. Run the next command:
 ```{r klippy, echo=FALSE, include=TRUE}
-python3 parser.py
+python3 publisher.py
 ```
 <b>Work with MongoDB</b>
 
@@ -119,10 +122,10 @@ https://syntaxfix.com/question/448/mongonetworkerror-failed-to-connect-to-server
 After install necessary dependencies (for step 1 and 2 use mongoDB compass):
 1. Create <b>consumerDB</b> database on MongoDB
 2. Create collection <b>consumerCollection</b> on <b>consumerDB</b> database
-3. Go to directory Kafka_Mongo
+3. Go to directory kafka-python-camera-stream-publisher
 4. Run the next code:
 ```{r klippy, echo=FALSE, include=TRUE}
-python3 KafkaIntegrationWithMongoDB.py
+python3 publisher.py
 ```
 <b>Notice</b>
 <ul>
@@ -131,12 +134,11 @@ python3 KafkaIntegrationWithMongoDB.py
 </ul>
 
 For build dockerfiles for each element of kafka, run the next commands (only separately, line by line):
-1. Downland from dockerhub images:
+1. Download from dockerhub images:
 <pre>
-docker pull kirillgovras/kafka_producer:2.0
-docker pull kirillgovras/kafka_consumer:2.0
-docker pull kirillgovras/kafka_parser:2.0
-docker pull kirillgovras/kafka_mongo:2.0
+docker pull kirillgovras/kafka_producer:3.0
+docker pull kirillgovras/kafka_consumer:3.0
+docker pull kirillgovras/publisher:3.0
 </pre>
 1.1. You can build containers appropriate from directories. Only use commands (from necessary directories, all have dockerfiles):
 <pre>
@@ -144,17 +146,15 @@ docker build -t nameofproducerimage .
 </pre>
 2. Run docker containers:
 <pre>
-docker run --name producer kirillgovras/kafka_producer:2.0 
-docker run -p 5000 --name consumer --network=host kirillgovras/kafka_consumer:2.0
-docker run --name parser kirillgovras/kafka_parser:2.0
-docker run --name kafkatomongo kirillgovras/kafka_mongo:2.0
+docker run -e "DISPLAY=$DISPLAY" -v "$HOME/.Xauthority:/root/.Xauthority:ro" --network host --name producer kirillgovras/kafka_producer:3.0
+docker run -p 5000 --name consumer --network=host kirillgovras/kafka_consumer:3.0
+docker run --network=host --name publisher kirillgovras/publisher:3.0
 </pre>
 3. For stop containers you can run commands:
 <pre>
 docker stop producer
 docker stop consumer
-docker stop parser
-docker stop kafkatomongo
+docker stop publisher
 </pre>
 
 <b>Work in Kubernetes</b>
@@ -173,10 +173,9 @@ minikube start
 ```
 2. Build deployments (pods will be create automatically) so that work with containers from previous steps. Run this command by separately:
 <pre>
-kubectl create deployment producer --image=kirillgovras/kafka_producer:2.0
-kubectl create deployment consumer --image=kirillgovras/kafka_consumer:2.0
-kubectl create deployment parser --image=kirillgovras/kafka_parser:2.0
-kubectl create deployment kafkatomongo --image=kirillgovras/kafka_mongo:2.0
+kubectl create deployment producer --image=kirillgovras/kafka_producer:3.0
+kubectl create deployment consumer --image=kirillgovras/kafka_consumer:3.0
+kubectl create deployment parser --image=kirillgovras/publisher:3.0
 </pre>
 3. For open our consumer on browser we need forward a port. Run first command so that define pod with consumer's container and run the second command so that forward a port:
 <pre>
@@ -197,9 +196,6 @@ spec:
 </pre>
 
 <b>NOTICE</b>
-In new version of producer and parser were adding:
-1. In producer - ai recognise instead parser (producer_new.py)
-2. In parser - remove ai recognise (parser_new.py)
-
-This action increase speed of transfer data from producer to consumer by kafka broker
+1. Necessary to check work in kubernetes with producer and publisher (consumer are working)
+2. Add makefie in some directories (namely in producer)
 
