@@ -1,7 +1,7 @@
 from flask import Flask, Response
 from kafka import KafkaConsumer
 
-consumer = KafkaConsumer('mongotest8', bootstrap_servers='192.168.1.12:9092', auto_offset_reset='latest')
+consumer = KafkaConsumer('mongotest12', bootstrap_servers='192.168.1.12:9092', auto_offset_reset='latest')
 
 app = Flask(__name__)
 
