@@ -173,10 +173,13 @@ minikube start
 ```
 2. Build deployments (pods will be create automatically) so that work with containers from previous steps. Run this command by separately:
 <pre>
-kubectl create deployment producer --image=kirillgovras/kafka_producer:3.0
+kubectl create deployment producer --image=kirillgovras/kafka_producer:3.1
 kubectl create deployment consumer --image=kirillgovras/kafka_consumer:3.0
 kubectl create deployment publisher --image=kirillgovras/publisher:3.0
 </pre>
+
+In kubernetes we will be using another image, which not consist cv2 output (cv2.imshow("Output",img)). For this goal rebuild image (comment lines with cv2 output) or use image kirillgovras/kafka_producer:3.1
+
 3. For open our consumer on browser we need forward a port. Run first command so that define pod with consumer's container and run the second command so that forward a port:
 <pre>
 kubectl get pods
@@ -195,7 +198,4 @@ spec:
         imagePullPolicy: IfNotPresent
 </pre>
 
-<b>NOTICE</b>
-1. Necessary to check work in kubernetes with producer and publisher (consumer are working)
-2. Add makefie in some directories (namely in producer)
 
