@@ -8,7 +8,7 @@ topic = 'mongotest14'
 
 # Connect to MongoDB and consumerDB database
 try:
-   client = MongoClient('localhost',27017)
+   client = MongoClient('192.168.1.12',27017)
    db = client.consumerDB
    series_collection=db.consumerCollection
    print("Connected successfully to {}!".format(series_collection))
