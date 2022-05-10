@@ -17,7 +17,7 @@ except:
 
 # connect kafka consumer to desired kafka topic
 try:
-    consumer = KafkaConsumer(topic,bootstrap_servers=['192.168.1.2:9092'], auto_offset_reset='latest', value_deserializer=lambda x: loads(x.decode('ISO-8859-1')))
+    consumer = KafkaConsumer(topic,bootstrap_servers=['192.168.1.12:9092'], auto_offset_reset='latest', value_deserializer=lambda x: loads(x.decode('ISO-8859-1')))
     print("Connect to topic {}".format(topic))
 except:
     print("Could not connect to topic {}".format(topic))
