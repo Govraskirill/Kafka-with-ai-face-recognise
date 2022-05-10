@@ -14,13 +14,13 @@ from kafka.errors import KafkaError
 
 thres = 0.65 #Threshold to detect object
 
-producer = KafkaProducer(bootstrap_servers='192.168.1.2:9092')#, value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers='192.168.1.12:9092')#, value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 #value_serializer=lambda m: json.dumps(m).encode('ascii')
 #value_serializer=lambda v: json.dumps(v).encode('utf-8')
 topic = 'mongotest12'
 
 #second topic for timestamp, video and subject
-producer1 = KafkaProducer(bootstrap_servers='192.168.1.2:9092', value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer1 = KafkaProducer(bootstrap_servers='192.168.1.12:9092', value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 topic1 = 'mongotest14'
 
 
@@ -30,18 +30,21 @@ timestamp = time_ns()
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-v", "--video", default = "rtsp://192.168.1.6:1935",
+ap.add_argument("-v", "--video", default = "rtsp://192.168.1.201:554/ch01_sub.264",
 	help="path to input video file")
 ap.add_argument("-d", "--display", type = int, default = "1",
 	help="show video or not: 0 - no, 1 - yes")
 args = vars(ap.parse_args())
 
 #link on RTSP
-cap = cv2.VideoCapture(args["video"])
+cap = VideoStream(args["video"]).start()
+time.sleep(1.0)
+# start the FPS timer
+fps = FPS().start()
 
 #parameters of stream
-cap.set(3,640)
-cap.set(4,480)
+#cap.set(3,640)
+#cap.set(4,480)
 
 #array for class names which will be detect on video stream
 classNames = []
@@ -66,7 +69,7 @@ net.setInputSwapRB(True)
 
 while True:
     #send image to model and receive predictions (necessary information)
-    success,img = cap.read()
+    img = cap.read()
     #classIds, confidence configuration, boundary box (id класса, конфигурация достоверности, ограничивающая рамка)
     classIds, confs, bbox = net.detect(img, confThreshold = thres) #define threshold to detect object (should be >= our value)
     print(classIds, confs, bbox)
@@ -104,11 +107,11 @@ while True:
     #send to kafka topic
     future = producer.send(topic, byte_encode)
 
-
+    fps.update()
 
 
 # do a bit of cleanup
 cv2.destroyAllWindows()
-
+fvs.stop()
 
 
