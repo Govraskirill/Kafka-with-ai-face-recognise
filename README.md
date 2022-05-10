@@ -146,7 +146,7 @@ docker build -t nameofproducerimage .
 </pre>
 2. Run docker containers:
 <pre>
-docker run -e "DISPLAY=$DISPLAY" -v "$HOME/.Xauthority:/root/.Xauthority:ro" --network host --name producer kirillgovras/kafka_producer:3.0
+docker run -e "DISPLAY=$DISPLAY" -v "XAUTHORITY=~/.Xauthority" --network host --name producer kirillgovras/kafka_producer:3.0
 docker run -p 5000 --name consumer --network=host kirillgovras/kafka_consumer:3.0
 docker run --network=host --name publisher kirillgovras/publisher:3.0
 </pre>
