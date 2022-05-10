@@ -175,7 +175,7 @@ minikube start
 <pre>
 kubectl create deployment producer --image=kirillgovras/kafka_producer:3.0
 kubectl create deployment consumer --image=kirillgovras/kafka_consumer:3.0
-kubectl create deployment parser --image=kirillgovras/publisher:3.0
+kubectl create deployment publisher --image=kirillgovras/publisher:3.0
 </pre>
 3. For open our consumer on browser we need forward a port. Run first command so that define pod with consumer's container and run the second command so that forward a port:
 <pre>
