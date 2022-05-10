@@ -14,5 +14,5 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 ADD producer.py /
-CMD ["python3", "objdetect.py"]
+CMD ["python3", "producer.py"]
 
